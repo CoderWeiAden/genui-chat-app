@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 /* ── 品牌主色：靛蓝紫渐变 ── */
 :root {
@@ -131,7 +130,7 @@ body {
   opacity: 0.4;
 }
 
-/* ── 文字选中颜色 ── */
+
 ::selection {
   background: rgba(99, 102, 241, 0.25);
   color: inherit;
