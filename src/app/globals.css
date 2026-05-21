@@ -1,1 +1,138 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* ── 品牌主色：靛蓝紫渐变 ── */
+:root {
+  --brand-from: #6366f1;
+  --brand-to: #8b5cf6;
+  --brand-gradient: linear-gradient(135deg, var(--brand-from), var(--brand-to));
+
+  /* light mode */
+  --bg-base: #f8f9fc;
+  --bg-surface: #ffffff;
+  --bg-overlay: rgba(255, 255, 255, 0.8);
+  --border-subtle: rgba(0, 0, 0, 0.07);
+  --text-primary: #0f0f1a;
+  --text-secondary: #5c5c7a;
+  --glow-color: rgba(99, 102, 241, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-base: #0d0d14;
+    --bg-surface: #13131f;
+    --bg-overlay: rgba(19, 19, 31, 0.85);
+    --border-subtle: rgba(255, 255, 255, 0.07);
+    --text-primary: #f0f0ff;
+    --text-secondary: #8888aa;
+    --glow-color: rgba(139, 92, 246, 0.2);
+  }
+}
+
+/* ── openui 主题覆盖 ── */
+:root {
+  --openui-background: var(--bg-base);
+  --openui-foreground: var(--bg-surface);
+  --openui-font-body: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --openui-font-heading: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --openui-font-label: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --openui-interactive-accent-default: var(--brand-from);
+  --openui-interactive-accent-hover: var(--brand-to);
+  --openui-border-default: var(--border-subtle);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --openui-background: #0d0d14;
+    --openui-foreground: #13131f;
+    --openui-text-neutral-primary: rgba(240, 240, 255, 1);
+    --openui-text-neutral-secondary: rgba(240, 240, 255, 0.5);
+    --openui-text-neutral-tertiary: rgba(240, 240, 255, 0.2);
+    --openui-chat-user-response-bg: rgba(99, 102, 241, 0.15);
+    --openui-chat-user-response-text: rgba(240, 240, 255, 1);
+    --openui-border-default: rgba(255, 255, 255, 0.07);
+    --openui-border-interactive: rgba(255, 255, 255, 0.12);
+    --openui-elevated: rgba(255, 255, 255, 0.06);
+    --openui-elevated-strong: rgba(255, 255, 255, 0.1);
+    --openui-interactive-accent-default: #a5b4fc;
+    --openui-interactive-accent-hover: #c4b5fd;
+  }
+}
+
+/* ── 全局基础 ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── 聊天界面容器美化 ── */
+.chat-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-base);
+}
+
+/* 背景光晕 */
+.chat-wrapper::before {
+  content: "";
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    ellipse at center,
+    var(--glow-color) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 确保 openui 组件在光晕上层 */
+.chat-wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── 滚动条美化 ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+  opacity: 0.4;
+}
+
+/* ── 文字选中颜色 ── */
+::selection {
+  background: rgba(99, 102, 241, 0.25);
+  color: inherit;
+}

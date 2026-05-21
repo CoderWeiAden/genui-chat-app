@@ -10,7 +10,7 @@ const systemPrompt = openuiLibrary.prompt(openuiPromptOptions);
 
 export default function Home() {
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="chat-wrapper">
       <FullScreen
         processMessage={async ({ messages, abortController }) => {
           return fetch("/api/chat", {
@@ -25,7 +25,7 @@ export default function Home() {
         }}
         streamProtocol={openAIReadableStreamAdapter()}
         componentLibrary={openuiLibrary}
-        agentName="OpenUI Chat"
+        agentName="启源 AI"
       />
     </div>
   );
